@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Rent Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Predict House Rent</h1>
+        <input type="text" id="localityId" placeholder="Locality ID">
+        <input type="number" id="bathroom" placeholder="Number of Bathrooms">
+        <input type="number" id="floor" placeholder="Floor">
+        <input type="number" id="parking" placeholder="Parking (0: Both, 1: Two-Wheeler, 2: Four-Wheeler, 3: None)">
+        <input type="number" id="property_size" placeholder="Property Size (sqft)">
+        <input type="number" id="type_bhk" placeholder="Type BHK (1, 2, 3, 4, etc.)">
+        <input type="number" id="maintenance" placeholder="Maintenance Amount">
+        <button onclick="predictRent()">Predict Rent</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        async function predictRent() {
+            const localityId = document.getElementById('localityId').value;
+            const bathroom = document.getElementById('bathroom').value;
+            const floor = document.getElementById('floor').value;
+            const parking = document.getElementById('parking').value;
+            const property_size = document.getElementById('property_size').value;
+            const type_bhk = document.getElementById('type_bhk').value;
+            const maintenance = document.getElementById('maintenance').value;
+
+            const data = {
+                localityId: localityId,
+                bathroom: bathroom,
+                floor: floor,
+                parking: parking,
+                property_size: property_size,
+                type_bhk: type_bhk,
+                maintenance: maintenance
+            };
+
+            try {
+                const response = await fetch('http://localhost:5000/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                document.getElementById('result').innerText = `Predicted Rent: ${result.price}`;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = 'Error predicting rent. Please try again.';
+            }
+        }
+    </script>
+</body>
+</html>
