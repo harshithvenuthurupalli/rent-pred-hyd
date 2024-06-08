@@ -43,51 +43,142 @@
 <body>
     <div class="container">
         <h1>Predict House Rent</h1>
-        <input type="text" id="localityId" placeholder="Locality ID">
-        <input type="number" id="bathroom" placeholder="Number of Bathrooms">
+        <select id="loc_new">
+            <option value="1">Nizampet</option>
+            <option value="2">Hitech City</option>
+            <option value="3">Manikonda</option>
+            <option value="4">Alwal</option>
+            <option value="5">Kukatpally</option>
+            <option value="6">Gachibowli</option>
+            <option value="7">Chandrayangutta</option>
+            <option value="8">LB Nagar</option>
+            <option value="9">Kondapur</option>
+            <option value="10">Vignanpuri Colony</option>
+            <option value="11">A. S. Rao Nagar</option>
+            <option value="12">Toli Chowki</option>
+            <option value="13">Yousufguda</option>
+            <option value="14">Rahmat Nagar</option>
+            <option value="15">Miyapur</option>
+            <option value="16">Kompally</option>
+            <option value="17">HUDA Colony, Chanda Nagar</option>
+            <option value="18">Mehdipatnam</option>
+            <option value="19">Secunderabad</option>
+            <option value="20">Hafeezpet</option>
+            <option value="21">Saidabad</option>
+            <option value="22">Banjara Hills</option>
+            <option value="23">Himayath Nagar</option>
+            <option value="24">Upperpally</option>
+            <option value="25">Shaikpet</option>
+            <option value="26">Upparpally Road</option>
+            <option value="27">Bandlaguda Jagir</option>
+            <option value="28">Gajularamaram</option>
+            <option value="29">Dammaiguda</option>
+            <option value="30">Kokapet</option>
+            <option value="31">Himayatnagar</option>
+            <option value="32">Attapur</option>
+            <option value="33">West Marredpally</option>
+            <option value="34">Masjid Banda</option>
+            <option value="35">Hi Tech City</option>
+            <option value="36">Bowenpally</option>
+            <option value="37">Puppalguda</option>
+            <option value="38">Madinaguda</option>
+            <option value="39">Nizampet Road</option>
+            <option value="40">Nanakramguda</option>
+            <option value="41">Whitefields</option>
+            <option value="42">Somajiguda</option>
+            <option value="43">Chanda Nagar</option>
+            <option value="44">Y S Rajasekhara Reddy Statue</option>
+            <option value="45">Gopanpally</option>
+            <option value="46">Madhapur</option>
+            <option value="47">Chintalakunta</option>
+            <option value="48">Nallagandla Huda</option>
+            <option value="49">Vanasthalipuram</option>
+            <option value="50">Peerancheruvu</option>
+            <option value="51">Bandlaguda</option>
+            <option value="52">NARSINGI</option>
+            <option value="53">Musheerabad</option>
+            <option value="54">Alai Balai Chowrastha</option>
+            <option value="55">Uppal</option>
+            <option value="56">Hyderabad</option>
+            <option value="57">King Kothi</option>
+            <option value="58">Prakasham Panthulu Nagar</option>
+            <option value="59">Malakpet</option>
+            <option value="60">Bapu Nagar, Amberpet</option>
+            <option value="61">Nagole</option>
+            <option value="62">East Marredpally</option>
+            <option value="63">Serilingampally</option>
+            <option value="64">Nallagandla, Serilingampally</option>
+            <option value="65">New Nallakunta</option>
+            <option value="66">Arihant Ashray</option>
+            <option value="67">Nanakram Guda</option>
+            <option value="68">Nallagandla</option>
+            <option value="69">Patancheru</option>
+            <option value="70">Banjara Hills Road No.10</option>
+            <option value="71">KPHB Phase 2</option>
+            <option value="72">Pragati Nagar</option>
+            <option value="73">Tarnaka</option>
+            <option value="74">No 5 Road, Kukatpally</option>
+            <option value="75">Sikh Village</option>
+        
+        </select>
+        <input type="number" id="type_bhk_new" placeholder="Type BHK (0, 1, 2, 3, 4, etc.)">
         <input type="number" id="floor" placeholder="Floor">
-        <input type="number" id="parking" placeholder="Parking (0: Both, 1: Two-Wheeler, 2: Four-Wheeler, 3: None)">
+        <input type="number" id="parking_new" placeholder="Parking (0: Both, 1: Two-Wheeler, 2: Four-Wheeler, 3: None)">
         <input type="number" id="property_size" placeholder="Property Size (sqft)">
-        <input type="number" id="type_bhk" placeholder="Type BHK (1, 2, 3, 4, etc.)">
-        <input type="number" id="maintenance" placeholder="Maintenance Amount">
+        <input type="number" id="bathroom" placeholder="Number of Bathrooms">
+        <input type="number" id="totalFloor" placeholder="Number of Floors">
+        <input type="number" id="maintenanceAmount" placeholder="Maintenance Amount">
         <button onclick="predictRent()">Predict Rent</button>
         <p id="result"></p>
     </div>
     <script>
         async function predictRent() {
-            const localityId = document.getElementById('localityId').value;
-            const bathroom = document.getElementById('bathroom').value;
+            const loc_new = document.getElementById('loc_new').value;
+            const type_bhk_new = document.getElementById('type_bhk_new').value;
             const floor = document.getElementById('floor').value;
-            const parking = document.getElementById('parking').value;
+            const parking_new = document.getElementById('parking_new').value;
             const property_size = document.getElementById('property_size').value;
-            const type_bhk = document.getElementById('type_bhk').value;
-            const maintenance = document.getElementById('maintenance').value;
+            const bathroom = document.getElementById('bathroom').value;
+            const totalFloor = document.getElementById('totalFloor').value;
+            const maintenanceAmount = document.getElementById('maintenanceAmount').value;
 
             const data = {
-                localityId: localityId,
-                bathroom: bathroom,
+                loc_new: loc_new,
+                type_bhk_new: type_bhk_new,
                 floor: floor,
-                parking: parking,
+                parking_new: parking_new,
                 property_size: property_size,
-                type_bhk: type_bhk,
-                maintenance: maintenance
+                bathroom: bathroom,
+                totalFloor: totalFloor,
+                maintenanceAmount: maintenanceAmount
             };
 
             try {
-                const response = await fetch('http://localhost:5000/predict', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
+            const response = await fetch('/predict', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+             },
+            body: JSON.stringify(data)
+             });
 
-                const result = await response.json();
-                document.getElementById('result').innerText = `Predicted Rent: ${result.price}`;
-            } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('result').innerText = 'Error predicting rent. Please try again.';
+            if (!response.ok) {
+            throw new Error(Failed to fetch. Status: ${response.status});
             }
+
+            const result = await response.json();
+            if (!result || !result.price) {
+                throw new Error('Invalid response received from server.');
+            }
+
+            document.getElementById('result').innerText = Predicted Rent: ${result.price};
+            } catch (error) {
+               console.error('Error:', error.message);
+               document.getElementById('result').innerText = 'Error predicting rent. Please try again.';
+            }
+
+
+
         }
     </script>
 </body>
